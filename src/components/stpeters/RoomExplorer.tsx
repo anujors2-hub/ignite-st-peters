@@ -114,7 +114,7 @@ export function RoomExplorer() {
               <img
                 key={suite.id}
                 src={suite.image}
-                alt={`${suite.name} at Ignite Medical Resort St. Peters`}
+                alt={`${suite.name} — ${suite.tagline} at Ignite Medical Resort St. Peters`}
                 width={1536}
                 height={1024}
                 loading="lazy"

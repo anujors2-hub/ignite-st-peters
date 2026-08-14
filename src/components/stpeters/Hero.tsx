@@ -6,7 +6,7 @@ export function Hero() {
     <section id="top" className="relative min-h-[100svh] overflow-hidden bg-ink">
       <img
         src={heroImage}
-        alt="The great room at Ignite Medical Resort St. Peters, with a limestone fireplace and courtyard views"
+        alt="The lobby and Signature LuxeCafé at Ignite Medical Resort St. Peters, with marble countertops, pendant lighting and wood-beam ceiling"
         width={1920}
         height={1088}
         className="ken-burns absolute inset-0 h-full w-full object-cover"
@@ -21,14 +21,21 @@ export function Hero() {
       />
 
       <div className="relative mx-auto flex min-h-[100svh] max-w-[92rem] flex-col justify-end px-6 pb-20 pt-40 lg:px-10 lg:pb-28">
-        <p className="eyebrow mb-8 text-ember-soft">Skilled Nursing &amp; Rehabilitation · St. Peters, Missouri</p>
-        <h1 className="max-w-5xl font-display text-[clamp(3rem,8vw,7.5rem)] leading-[0.92] tracking-tight text-on-ink">
-          Recovery, reimagined
-          <span className="block italic text-ember-soft">in St. Peters.</span>
+        <p className="eyebrow mb-8 text-ember-soft">St. Peters, Missouri · 5101 Executive Centre Parkway</p>
+        <h1 className="max-w-5xl font-display text-[clamp(2.5rem,5.6vw,5.25rem)] font-light uppercase leading-[0.98] tracking-[0.01em] text-on-ink">
+          Ignite Medical Resort St.&nbsp;Peters
+          <span className="mt-4 block text-[0.4em] normal-case italic text-ember-soft">
+            Skilled Nursing &amp; Rehabilitation Center in St.&nbsp;Peters, MO
+          </span>
         </h1>
-        <p className="mt-10 max-w-xl text-lg leading-relaxed text-on-ink-muted">
-          Advanced rehabilitation inside a five-star resort. Private suites, a chef-led restaurant,
-          a full-service spa — and a clinical team focused on one outcome: getting you home.
+        <p className="mt-10 max-w-[46rem] text-lg leading-relaxed text-on-ink-muted">
+          Residents of St. Peters and the surrounding communities can rehab in a 5-star hotel
+          environment with amenity-rich private rooms, a Starbucks café, an onsite restaurant with
+          an executive chef, a full-service spa, and an onsite chapel. Here, at Ignite Medical
+          Resorts, we have successfully merged advanced physical therapy and rehabilitation with
+          luxuries unique to the industry and our facility. This includes an always-available
+          Director of Hospitality ready to provide concierge services and to keep loved ones
+          updated on your progress.
         </p>
 
         <div className="mt-12 flex flex-wrap items-center gap-4">

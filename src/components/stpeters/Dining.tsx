@@ -11,7 +11,7 @@ export function Dining() {
       <div ref={ref} className="relative h-[70vh] overflow-hidden lg:h-[85vh]">
         <img
           src={grille}
-          alt="The Fireside Grille dining room at Ignite Medical Resort St. Peters"
+          alt="The Fireside Grille restaurant at Ignite Medical Resort St. Peters, with cathedral ceiling, wood beams and starburst chandeliers"
           width={1536}
           height={1024}
           loading="lazy"
@@ -54,7 +54,7 @@ export function Dining() {
         <Reveal delay={140} className="overflow-hidden rounded-sm">
           <img
             src={courtyard}
-            alt="The courtyard patio and fire pit at dusk"
+            alt="The exterior of Ignite Medical Resort St. Peters, showing the porte cochere entrance and blue-and-white siding"
             width={1536}
             height={1024}
             loading="lazy"

@@ -91,7 +91,7 @@ export function Amenities() {
                 >
                   <img
                     src={item.image}
-                    alt={item.name}
+                    alt={`${item.name} at Ignite Medical Resort St. Peters`}
                     width={1280}
                     height={1024}
                     loading="lazy"
