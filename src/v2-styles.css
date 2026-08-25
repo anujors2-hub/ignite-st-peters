@@ -42,7 +42,23 @@
   letter-spacing: 0.38em !important;
   text-transform: uppercase !important;
   font-size: 0.66rem !important;
+  color: var(--muted);
+}
+
+.v2-page .eyebrow:not([class*="text-"]) {
   color: var(--muted) !important;
+}
+
+.v2-page .text-\[\#F5B335\] {
+  color: #F5B335 !important;
+}
+
+.v2-page .text-\[\#E7DDCE\] {
+  color: #E7DDCE !important;
+}
+
+.v2-page .text-\[\#FBF8F3\] {
+  color: #FBF8F3 !important;
 }
 
 .v2-page .ember-text {

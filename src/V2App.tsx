@@ -28,7 +28,14 @@ export default function V2App() {
     );
 
     const elements = document.querySelectorAll(".v2-page .reveal");
-    elements.forEach((el) => io.observe(el));
+    elements.forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom >= 0) {
+        el.classList.add("in");
+      } else {
+        io.observe(el);
+      }
+    });
 
     return () => {
       elements.forEach((el) => io.unobserve(el));
