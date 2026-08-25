@@ -34,3 +34,7 @@ npm-debug.log*
 
 .vercel
 .env*
+
+# V2 source files
+*.zip
+_v2_temp/
