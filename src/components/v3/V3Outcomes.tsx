@@ -16,7 +16,6 @@ export function V3Outcomes() {
         if (entry.isIntersecting && !animated) {
           setAnimated(true);
 
-          let start = 0;
           const dur = 1400;
           const startTime = performance.now();
 
@@ -35,7 +34,7 @@ export function V3Outcomes() {
           io.disconnect();
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.1 }
     );
 
     io.observe(el);
@@ -48,9 +47,7 @@ export function V3Outcomes() {
         <dl className="statgrid">
           <div data-reveal>
             <dd>
-              <b>
-                <span>{count92}%</span>
-              </b>
+              <b>{count92}%</b>
               <span>
                 Return home <abbr title="Figure pending clinical sign-off">*</abbr>
               </span>
@@ -58,9 +55,7 @@ export function V3Outcomes() {
           </div>
           <div data-reveal data-delay="90">
             <dd>
-              <b>
-                <span>{count7}</span>
-              </b>
+              <b>{count7}</b>
               <span>Specialty programs</span>
             </dd>
           </div>

@@ -61,6 +61,29 @@ export default function V3App() {
     let barIn = false;
     let chapNow = -1;
 
+    const triggerElement = (el: HTMLElement) => {
+      if (el.classList.contains("mask")) {
+        el.querySelectorAll("span").forEach((s) => s.classList.add("is-in"));
+      } else {
+        const delay = parseFloat(el.getAttribute("data-delay") || "0");
+        if (!delay) el.classList.add("is-in");
+        else setTimeout(() => el.classList.add("is-in"), delay);
+      }
+    };
+
+    const sweep = () => {
+      const vh = window.innerHeight;
+      const targets = document.querySelectorAll<HTMLElement>(
+        ".v3-page .mask, .v3-page [data-reveal], .v3-page [data-clip]"
+      );
+      targets.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 0.95 && r.bottom > 0) {
+          triggerElement(el);
+        }
+      });
+    };
+
     const paint = () => {
       raf = null;
       const y = window.scrollY || 0;
@@ -96,6 +119,8 @@ export default function V3App() {
       }
 
       if (rail) rail.classList.toggle("is-in", y > vh * 0.6);
+
+      sweep();
     };
 
     const onScroll = () => {
@@ -104,45 +129,41 @@ export default function V3App() {
 
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
-    paint();
 
-    // Reveals logic matching main.js
+    // Initial sweeps
+    sweep();
+    paint();
+    const t1 = setTimeout(sweep, 150);
+    const t2 = setTimeout(sweep, 500);
+
+    // Observer for lazy reveal as user scrolls
     const targets = Array.from(
-      document.querySelectorAll<HTMLElement>(".v3-page [data-reveal], .v3-page .mask > span, .v3-page [data-clip]")
+      document.querySelectorAll<HTMLElement>(
+        ".v3-page .mask, .v3-page [data-reveal], .v3-page [data-clip]"
+      )
     );
 
     if (isCalm) {
-      targets.forEach((el) => el.classList.add("is-in"));
+      targets.forEach(triggerElement);
     } else {
-      // Hero reveals play on load with delay
-      document
-        .querySelectorAll<HTMLElement>(".hero [data-reveal], .hero .mask > span")
-        .forEach((el) => {
-          const wait = parseFloat(el.getAttribute("data-delay") || "0") + 140;
-          setTimeout(() => el.classList.add("is-in"), wait);
-        });
-
       const io = new IntersectionObserver(
         (entries) => {
           entries.forEach((e) => {
-            if (!e.isIntersecting) return;
-            const el = e.target as HTMLElement;
-            io.unobserve(el);
-            const wait = parseFloat(el.getAttribute("data-delay") || "0");
-            if (!wait) el.classList.add("is-in");
-            else setTimeout(() => el.classList.add("is-in"), wait);
+            if (e.isIntersecting) {
+              const el = e.target as HTMLElement;
+              io.unobserve(el);
+              triggerElement(el);
+            }
           });
         },
-        { threshold: 0, rootMargin: "0px 0px -8% 0px" }
+        { threshold: 0, rootMargin: "0px 0px -5% 0px" }
       );
 
-      targets.forEach((el) => {
-        if (!el.closest(".hero")) {
-          io.observe(el);
-        }
-      });
+      targets.forEach((el) => io.observe(el));
 
       return () => {
+        clearTimeout(t1);
+        clearTimeout(t2);
         window.removeEventListener("scroll", onScroll);
         window.removeEventListener("resize", onScroll);
         io.disconnect();
@@ -150,6 +171,8 @@ export default function V3App() {
     }
 
     return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
