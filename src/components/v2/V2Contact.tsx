@@ -1,12 +1,10 @@
 import { useState, type FormEvent } from "react";
-import { ADDRESS, MAP_EMBED, MAP_URL, PHONE, PHONE_HREF } from "./data";
-import { Reveal } from "./V2Reveal";
 
 export function V2Contact() {
-  const [sent, setSent] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
 
-  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(false);
     const form = e.currentTarget;
@@ -17,7 +15,7 @@ export function V2Contact() {
       });
       const data = await res.json().catch(() => ({}));
       if (data.success) {
-        setSent(true);
+        setSubmitted(true);
       } else {
         setError(true);
       }
@@ -27,111 +25,112 @@ export function V2Contact() {
   };
 
   return (
-    <section id="visit" className="bg-v2-beige">
-      <div className="mx-auto grid max-w-[1400px] gap-14 px-5 py-20 sm:px-8 lg:grid-cols-2 lg:py-28">
-        <Reveal>
-          <p className="v2-eyebrow">Plan Your Visit</p>
-          <div className="v2-rule my-6 w-24" />
-          <h2 className="font-v2-display text-4xl sm:text-5xl lg:text-[3.8rem]">
-            Schedule a
-            <br />
+    <section id="visit" className="bg-[color:var(--beige)]">
+      <div className="max-w-[1400px] mx-auto px-5 sm:px-8 py-20 lg:py-28 grid lg:grid-cols-2 gap-14">
+        <div className="reveal">
+          <p className="eyebrow">Plan Your Visit</p>
+          <div className="rule w-24 my-6"></div>
+          <h2 className="display text-4xl sm:text-5xl lg:text-[3.8rem]">
+            Schedule a<br />
             <span className="italic">private tour.</span>
           </h2>
-          <p className="mt-6 max-w-lg text-v2-muted">
+          <p className="mt-6 text-[color:var(--muted)] max-w-lg">
             Tell us a little about your needs and our Director of Hospitality will be in touch — often the same day.
           </p>
 
           <div className="mt-10 space-y-5 text-sm">
-            <div className="flex gap-4 border-t border-v2-ink/12 pt-5">
-              <span className="v2-eyebrow w-24 shrink-0">Call</span>
-              <a href={PHONE_HREF} className="transition hover:text-v2-ember">
-                {PHONE}
+            <div className="flex gap-4 border-t border-[color:var(--line)] pt-5">
+              <span className="eyebrow w-24 shrink-0">Call</span>
+              <a className="hover:text-[color:var(--ember)] transition" href="tel:+16362261900">
+                636-226-1900
               </a>
             </div>
-            <div className="flex gap-4 border-t border-v2-ink/12 pt-5">
-              <span className="v2-eyebrow w-24 shrink-0">Visit</span>
+            <div className="flex gap-4 border-t border-[color:var(--line)] pt-5">
+              <span className="eyebrow w-24 shrink-0">Visit</span>
               <a
-                href={MAP_URL}
+                className="hover:text-[color:var(--ember)] transition"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition hover:text-v2-ember"
+                href="https://maps.app.goo.gl/CsEBBzvy5cbjAfKV7"
               >
-                5101 Executive Centre Parkway,
-                <br />
-                St. Peters, MO 63376
+                5101 Executive Centre Parkway,<br />St. Peters, MO 63376
               </a>
             </div>
-            <div className="flex gap-4 border-t border-b border-v2-ink/12 py-5">
-              <span className="v2-eyebrow w-24 shrink-0">Tours</span>
+            <div className="flex gap-4 border-t border-b border-[color:var(--line)] py-5">
+              <span className="eyebrow w-24 shrink-0">Tours</span>
               <span>Daily, 7 days a week</span>
             </div>
           </div>
 
-          <div className="mt-8 aspect-[16/10] w-full overflow-hidden">
+          <div className="mt-8 w-full aspect-[16/10] overflow-hidden">
             <iframe
-              className="h-full w-full"
+              className="w-full h-full"
               style={{ border: 0 }}
               loading="lazy"
               allowFullScreen
               referrerPolicy="no-referrer-when-downgrade"
               title="Map of Ignite Medical Resort St. Peters"
-              src={MAP_EMBED}
-            />
+              src="https://maps.google.com/maps?q=5101+Executive+Centre+Parkway%2C+St.+Peters%2C+MO+63376&amp;z=15&amp;output=embed"
+            ></iframe>
           </div>
-        </Reveal>
+        </div>
 
-        <Reveal delay={120}>
-          {!sent ? (
-            <form id="v2-lead-form" onSubmit={onSubmit} className="bg-v2-cream p-8 sm:p-10">
+        <div className="reveal d1">
+          {!submitted ? (
+            <form id="lead-form" onSubmit={handleSubmit} className="bg-[color:var(--cream)] p-8 sm:p-10">
               <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
-              <input type="hidden" name="source" value="st-peters-v2-landing-page" />
-              <input type="hidden" name="subject" value="New tour request — Ignite St. Peters V2" />
-
-              <p className="font-v2-display text-3xl">Request Information</p>
-
+              <input type="hidden" name="source" value="st-peters-landing-page" />
+              <input type="hidden" name="subject" value="New tour request — Ignite St. Peters" />
+              <p className="display text-3xl">Request Information</p>
               <div className="mt-8 space-y-5">
                 <div>
-                  <label className="v2-eyebrow" htmlFor="v2-name">Name</label>
+                  <label className="eyebrow" htmlFor="f-name">
+                    Name
+                  </label>
                   <input
-                    id="v2-name"
+                    id="f-name"
                     name="name"
                     required
                     type="text"
-                    className="mt-2 w-full border-b border-v2-ink/12 bg-transparent py-3 outline-none transition focus:border-v2-ember"
+                    className="mt-2 w-full bg-transparent border-b border-[color:var(--line)] py-3 outline-none focus:border-[color:var(--ember)] transition"
                     placeholder="Full name"
                   />
                 </div>
-
-                <div className="grid gap-5 sm:grid-cols-2">
+                <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="v2-eyebrow" htmlFor="v2-email">Email</label>
+                    <label className="eyebrow" htmlFor="f-email">
+                      Email
+                    </label>
                     <input
-                      id="v2-email"
+                      id="f-email"
                       name="email"
                       required
                       type="email"
-                      className="mt-2 w-full border-b border-v2-ink/12 bg-transparent py-3 outline-none transition focus:border-v2-ember"
+                      className="mt-2 w-full bg-transparent border-b border-[color:var(--line)] py-3 outline-none focus:border-[color:var(--ember)] transition"
                       placeholder="you@email.com"
                     />
                   </div>
                   <div>
-                    <label className="v2-eyebrow" htmlFor="v2-phone">Phone</label>
+                    <label className="eyebrow" htmlFor="f-phone">
+                      Phone
+                    </label>
                     <input
-                      id="v2-phone"
+                      id="f-phone"
                       name="phone"
                       type="tel"
-                      className="mt-2 w-full border-b border-v2-ink/12 bg-transparent py-3 outline-none transition focus:border-v2-ember"
+                      className="mt-2 w-full bg-transparent border-b border-[color:var(--line)] py-3 outline-none focus:border-[color:var(--ember)] transition"
                       placeholder="(636) 000-0000"
                     />
                   </div>
                 </div>
-
                 <div>
-                  <label className="v2-eyebrow" htmlFor="v2-interest">I'm interested in</label>
+                  <label className="eyebrow" htmlFor="f-interest">
+                    I'm interested in
+                  </label>
                   <select
-                    id="v2-interest"
+                    id="f-interest"
                     name="interest"
-                    className="mt-2 w-full border-b border-v2-ink/12 bg-transparent py-3 outline-none transition focus:border-v2-ember"
+                    className="mt-2 w-full bg-transparent border-b border-[color:var(--line)] py-3 outline-none focus:border-[color:var(--ember)] transition"
                   >
                     <option>Short-term rehabilitation</option>
                     <option>Long-term care</option>
@@ -140,54 +139,42 @@ export function V2Contact() {
                     <option>Careers</option>
                   </select>
                 </div>
-
                 <div>
-                  <label className="v2-eyebrow" htmlFor="v2-msg">Message</label>
+                  <label className="eyebrow" htmlFor="f-msg">
+                    Message
+                  </label>
                   <textarea
-                    id="v2-msg"
+                    id="f-msg"
                     name="message"
                     rows={4}
-                    className="mt-2 w-full border-b border-v2-ink/12 bg-transparent py-3 outline-none transition focus:border-v2-ember"
+                    className="mt-2 w-full bg-transparent border-b border-[color:var(--line)] py-3 outline-none focus:border-[color:var(--ember)] transition"
                     placeholder="How can we help?"
-                  />
+                  ></textarea>
                 </div>
-
-                {/* Honeypot */}
-                <input
-                  type="checkbox"
-                  name="botcheck"
-                  tabIndex={-1}
-                  autoComplete="off"
-                  style={{ display: "none" }}
-                />
-
+                <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" style={{ display: "none" }} />
                 <button
                   type="submit"
-                  className="w-full rounded-full bg-v2-ink py-4 text-[11px] tracking-[.24em] uppercase text-v2-cream transition hover:bg-v2-ember"
+                  className="w-full rounded-full bg-[#241D18] text-[#FBF8F3] py-4 text-[11px] tracking-[.24em] uppercase hover:bg-[color:var(--ember)] transition cursor-pointer"
                 >
                   Send Request
                 </button>
-
                 {error && (
-                  <p className="text-sm text-v2-ember">
-                    Something went wrong — please call us at {PHONE}.
+                  <p id="lead-error" className="text-sm text-[color:var(--ember)]">
+                    Something went wrong — please call us at 636-226-1900.
                   </p>
                 )}
-
-                <p className="text-xs text-v2-muted">
+                <p className="text-xs text-[color:var(--muted)]">
                   We accept Medicare, Insurance, Private Pay and Medicaid.
                 </p>
               </div>
             </form>
           ) : (
-            <div className="bg-v2-cream p-10 text-center">
-              <p className="font-v2-display text-4xl">Thank you.</p>
-              <p className="mt-3 text-v2-muted">
-                We received your request and will be in touch shortly.
-              </p>
+            <div id="lead-form-success" className="bg-[color:var(--cream)] p-10 text-center">
+              <p className="display text-4xl">Thank you.</p>
+              <p className="mt-3 text-[color:var(--muted)]">We received your request and will be in touch shortly.</p>
             </div>
           )}
-        </Reveal>
+        </div>
       </div>
     </section>
   );

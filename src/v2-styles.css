@@ -1,109 +1,137 @@
+@import "swiper/css";
+@import "swiper/css/pagination";
+@import "swiper/css/navigation";
+
 /*
  * V2 Design System — Ignite Medical Resort St. Peters
- * Cream/sand/beige palette with ember accent.
- * All classes are scoped with v2- prefix to avoid conflicts with v1.
+ * EXACT styling from v2 design specification
  */
 
-@theme inline {
-  --font-v2-display: "Cormorant Garamond", Georgia, serif;
-  --font-v2-sans: "Jost", "Karla", ui-sans-serif, system-ui, sans-serif;
+.v2-page {
+  --cream: #FBF8F3;
+  --sand: #F2ECE2;
+  --beige: #E7DDCE;
+  --ink: #241D18;
+  --muted: #6E6257;
+  --ember: #E8792B;
+  --ember-2: #F5B335;
+  --line: rgba(36, 29, 24, 0.12);
 
-  /* V2 color palette */
-  --color-v2-cream: #FBF8F3;
-  --color-v2-sand: #F2ECE2;
-  --color-v2-beige: #E7DDCE;
-  --color-v2-ink: #241D18;
-  --color-v2-muted: #6E6257;
-  --color-v2-ember: #E8792B;
-  --color-v2-ember-2: #F5B335;
-
-  --animate-v2-kb: v2-ken-burns 26s ease-in-out infinite alternate;
-  --animate-v2-marquee: v2-marquee 42s linear infinite;
-}
-
-/* V2 base styles - scoped to .v2-root */
-.v2-root {
-  font-family: var(--font-v2-sans);
-  font-weight: 300;
+  background-color: var(--cream) !important;
+  color: var(--ink) !important;
+  font-family: "Jost", sans-serif !important;
+  font-weight: 300 !important;
   -webkit-font-smoothing: antialiased;
   scroll-behavior: smooth;
 }
 
-.v2-root h1,
-.v2-root h2,
-.v2-root h3,
-.v2-root h4,
-.v2-root blockquote {
-  font-family: var(--font-v2-display);
-  font-weight: 300;
-  line-height: 1.02;
-  letter-spacing: -0.01em;
+.v2-page * {
+  box-sizing: border-box;
 }
 
-.v2-root ::selection {
-  background: var(--color-v2-ember);
-  color: #fff;
+.v2-page .display {
+  font-family: "Cormorant Garamond", Georgia, serif !important;
+  font-weight: 300 !important;
+  line-height: 1.02 !important;
+  letter-spacing: -0.01em !important;
 }
 
-/* V2 utility classes */
-@utility v2-eyebrow {
-  font-family: var(--font-v2-sans);
-  font-weight: 400;
-  letter-spacing: 0.38em;
-  text-transform: uppercase;
-  font-size: 0.66rem;
-  color: var(--color-v2-muted);
+.v2-page .eyebrow {
+  font-family: "Jost", sans-serif !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.38em !important;
+  text-transform: uppercase !important;
+  font-size: 0.66rem !important;
+  color: var(--muted) !important;
 }
 
-@utility v2-ember-text {
-  background: linear-gradient(100deg, var(--color-v2-ember) 0%, var(--color-v2-ember-2) 60%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.v2-page .ember-text {
+  background: linear-gradient(100deg, var(--ember) 0%, var(--ember-2) 60%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
 }
 
-@utility v2-rule {
-  height: 1px;
-  background: linear-gradient(90deg, var(--color-v2-ember), rgba(232, 121, 43, 0));
+.v2-page .rule {
+  height: 1px !important;
+  background: linear-gradient(90deg, var(--ember), rgba(232, 121, 43, 0)) !important;
 }
 
-@utility v2-reveal {
+.v2-page .reveal {
   opacity: 0;
   transform: translateY(28px);
-  transition:
-    opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
-
-  &[data-revealed="true"] {
-    opacity: 1;
-    transform: none;
-  }
+  transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1), transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* V2 animations */
-@keyframes v2-ken-burns {
-  from {
-    transform: scale(1.04);
-  }
-  to {
-    transform: scale(1.16);
-  }
+.v2-page .reveal.in {
+  opacity: 1 !important;
+  transform: none !important;
 }
 
-@keyframes v2-marquee {
-  to {
-    transform: translateX(-50%);
-  }
+.v2-page .d1 { transition-delay: 0.12s; }
+.v2-page .d2 { transition-delay: 0.24s; }
+.v2-page .d3 { transition-delay: 0.36s; }
+
+.v2-page .img-zoom {
+  overflow: hidden;
 }
 
-/* Reduced motion */
+.v2-page .img-zoom img {
+  transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.v2-page .img-zoom:hover img {
+  transform: scale(1.06);
+}
+
+.v2-page .glass {
+  background: rgba(251, 248, 243, 0.72) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+}
+
+.v2-page .hero-kenburns {
+  animation: kb 26s ease-in-out infinite alternate !important;
+}
+
+@keyframes kb {
+  from { transform: scale(1.04); }
+  to   { transform: scale(1.16); }
+}
+
+.v2-page .marquee {
+  display: flex;
+  gap: 4rem;
+  width: max-content;
+  animation: mq 42s linear infinite;
+}
+
+@keyframes mq {
+  to { transform: translateX(-50%); }
+}
+
+.v2-page .swiper-pagination-bullet {
+  background: var(--ink) !important;
+  opacity: 0.25 !important;
+}
+
+.v2-page .swiper-pagination-bullet-active {
+  background: var(--ember) !important;
+  opacity: 1 !important;
+}
+
+.v2-page ::selection {
+  background: var(--ember) !important;
+  color: #fff !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .v2-root * {
+  .v2-page * {
     animation: none !important;
     transition: none !important;
   }
-  .v2-reveal {
-    opacity: 1;
-    transform: none;
+  .v2-page .reveal {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

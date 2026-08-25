@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { V2SiteHeader } from "@/components/v2/V2SiteHeader";
 import { V2Hero } from "@/components/v2/V2Hero";
 import { V2Marquee } from "@/components/v2/V2Marquee";
@@ -13,8 +14,30 @@ import { V2Contact } from "@/components/v2/V2Contact";
 import { V2Footer } from "@/components/v2/V2Footer";
 
 export default function V2App() {
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    const elements = document.querySelectorAll(".v2-page .reveal");
+    elements.forEach((el) => io.observe(el));
+
+    return () => {
+      elements.forEach((el) => io.unobserve(el));
+      io.disconnect();
+    };
+  }, []);
+
   return (
-    <div className="v2-root bg-v2-cream text-v2-ink">
+    <div className="v2-page antialiased">
       <V2SiteHeader />
       <main>
         <V2Hero />

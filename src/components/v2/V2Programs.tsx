@@ -1,44 +1,76 @@
-import { SPECIALTY_PROGRAMS } from "./data";
-import { Reveal } from "./V2Reveal";
-
 export function V2Programs() {
   return (
-    <section id="care" className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 lg:py-32">
-      <Reveal className="max-w-3xl">
-        <p className="v2-eyebrow">Specialty Programs</p>
-        <div className="v2-rule my-6 w-24" />
-        <h2 className="font-v2-display text-4xl sm:text-5xl lg:text-[4.4rem]">
-          A personalized plan,
-          <br />
+    <section id="care" className="max-w-[1400px] mx-auto px-5 sm:px-8 py-20 lg:py-32">
+      <div className="max-w-3xl reveal">
+        <p className="eyebrow">Specialty Programs</p>
+        <div className="rule w-24 my-6"></div>
+        <h2 className="display text-4xl sm:text-5xl lg:text-[4.4rem]">
+          A personalized plan,<br />
           <span className="italic">confident outcomes.</span>
         </h2>
-        <p className="mt-7 text-lg font-light leading-relaxed text-v2-muted">
+        <p className="mt-7 text-lg text-[color:var(--muted)] font-light leading-relaxed">
           A comprehensive approach to well-being and rehabilitation is always top-of-mind. Our expert team devises a
           personalized plan in which your needs and capabilities are considered.
         </p>
-      </Reveal>
+      </div>
 
-      <div className="mt-14 grid border-t border-l border-v2-ink/12 sm:grid-cols-2 lg:grid-cols-4">
-        {SPECIALTY_PROGRAMS.map((program, i) => (
-          <Reveal key={program.title} delay={i * 60}>
-            <div className="border-b border-r border-v2-ink/12 p-8 transition hover:bg-v2-sand">
-              <p className="font-v2-display text-3xl">{program.num}</p>
-              <h3 className="mt-4 text-[13px] tracking-[.2em] uppercase">{program.title}</h3>
-              <p className="mt-3 text-sm text-v2-muted">{program.copy}</p>
-            </div>
-          </Reveal>
-        ))}
-
-        {/* Long-term care card */}
-        <Reveal delay={420}>
-          <div className="border-b border-r border-v2-ink/12 bg-v2-ink p-8 text-v2-sand">
-            <p className="font-v2-display text-3xl text-v2-ember-2">＋</p>
-            <h3 className="mt-4 text-[13px] tracking-[.2em] uppercase">Long-Term Care</h3>
-            <p className="mt-3 text-sm text-v2-beige/75">
-              Personalized, professional and deeply compassionate daily support.
-            </p>
-          </div>
-        </Reveal>
+      <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-[color:var(--line)]">
+        <div className="p-8 border-b border-r border-[color:var(--line)] reveal hover:bg-[color:var(--sand)] transition">
+          <p className="display text-3xl">01</p>
+          <h3 className="mt-4 text-[13px] tracking-[.2em] uppercase">Orthopedic Rehabilitation</h3>
+          <p className="mt-3 text-sm text-[color:var(--muted)]">
+            Joint replacement and post-surgical recovery guided by in-house therapists.
+          </p>
+        </div>
+        <div className="p-8 border-b border-r border-[color:var(--line)] reveal d1 hover:bg-[color:var(--sand)] transition">
+          <p className="display text-3xl">02</p>
+          <h3 className="mt-4 text-[13px] tracking-[.2em] uppercase">Stroke Recovery</h3>
+          <p className="mt-3 text-sm text-[color:var(--muted)]">
+            Physical, occupational and speech therapy restoring function and confidence.
+          </p>
+        </div>
+        <div className="p-8 border-b border-r border-[color:var(--line)] reveal d2 hover:bg-[color:var(--sand)] transition">
+          <p className="display text-3xl">03</p>
+          <h3 className="mt-4 text-[13px] tracking-[.2em] uppercase">Cardiac Care</h3>
+          <p className="mt-3 text-sm text-[color:var(--muted)]">
+            Continuous monitoring of heart rate, respiration and oxygen saturation.
+          </p>
+        </div>
+        <div className="p-8 border-b border-r border-[color:var(--line)] reveal d3 hover:bg-[color:var(--sand)] transition">
+          <p className="display text-3xl">04</p>
+          <h3 className="mt-4 text-[13px] tracking-[.2em] uppercase">Pulmonary Rehab</h3>
+          <p className="mt-3 text-sm text-[color:var(--muted)]">
+            Breath-focused programs designed to rebuild endurance safely.
+          </p>
+        </div>
+        <div className="p-8 border-b border-r border-[color:var(--line)] reveal hover:bg-[color:var(--sand)] transition">
+          <p className="display text-3xl">05</p>
+          <h3 className="mt-4 text-[13px] tracking-[.2em] uppercase">Wound Care</h3>
+          <p className="mt-3 text-sm text-[color:var(--muted)]">
+            Specialized wound-care software tailored to individual healing needs.
+          </p>
+        </div>
+        <div className="p-8 border-b border-r border-[color:var(--line)] reveal d1 hover:bg-[color:var(--sand)] transition">
+          <p className="display text-3xl">06</p>
+          <h3 className="mt-4 text-[13px] tracking-[.2em] uppercase">Infection Management</h3>
+          <p className="mt-3 text-sm text-[color:var(--muted)]">
+            Proactive prevention protocols and onsite lab analyzers.
+          </p>
+        </div>
+        <div className="p-8 border-b border-r border-[color:var(--line)] reveal d2 hover:bg-[color:var(--sand)] transition">
+          <p className="display text-3xl">07</p>
+          <h3 className="mt-4 text-[13px] tracking-[.2em] uppercase">Renal Disease</h3>
+          <p className="mt-3 text-sm text-[color:var(--muted)]">
+            Including in-house dialysis — no travel required for treatment.
+          </p>
+        </div>
+        <div className="p-8 border-b border-r border-[color:var(--line)] bg-[#241D18] text-[#F2ECE2] reveal d3">
+          <p className="display text-3xl text-[#F5B335]">＋</p>
+          <h3 className="mt-4 text-[13px] tracking-[.2em] uppercase">Long-Term Care</h3>
+          <p className="mt-3 text-sm text-[#E7DDCE]/75">
+            Personalized, professional and deeply compassionate daily support.
+          </p>
+        </div>
       </div>
     </section>
   );

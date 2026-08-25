@@ -1,51 +1,43 @@
-import suiteImage from "@/assets/v2/suite-private.jpg";
-import { Reveal } from "./V2Reveal";
-
-const FEATURES = [
-  "Amenity-rich private rooms",
-  "Adjoining suites available",
-  "Recliners & hotel linens",
-  "Made-to-order room service",
-];
+import suitePrivate from "@/assets/v2/suite-private.jpg";
 
 export function V2Suites() {
   return (
-    <section className="bg-v2-sand">
-      <div className="mx-auto grid max-w-[1400px] items-center gap-10 px-5 py-20 sm:px-8 lg:grid-cols-2 lg:gap-20 lg:py-28">
-        <Reveal className="group overflow-hidden">
+    <section className="bg-[color:var(--sand)]">
+      <div className="max-w-[1400px] mx-auto px-5 sm:px-8 py-20 lg:py-28 grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+        <div className="img-zoom reveal">
           <img
-            src={suiteImage}
+            src={suitePrivate}
             alt="Private guest suite at Ignite Medical Resorts"
-            className="h-[62vh] w-full object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.06]"
+            className="w-full h-[62vh] object-cover"
             loading="lazy"
           />
-        </Reveal>
-
-        <Reveal delay={120}>
-          <p className="v2-eyebrow">The Suites</p>
-          <div className="v2-rule my-6 w-24" />
-          <h2 className="font-v2-display text-4xl sm:text-5xl lg:text-[4.2rem]">
-            Private &amp; adjoining
-            <br />
+        </div>
+        <div className="reveal d1">
+          <p className="eyebrow">The Suites</p>
+          <div className="rule w-24 my-6"></div>
+          <h2 className="display text-4xl sm:text-5xl lg:text-[4.2rem]">
+            Private &amp; adjoining<br />
             <span className="italic">suites.</span>
           </h2>
-          <p className="mt-8 max-w-xl text-lg font-light leading-relaxed text-v2-muted">
+          <p className="mt-8 text-lg leading-relaxed text-[color:var(--muted)] font-light max-w-xl">
             Recovery is a journey of both body and mind — and our boutique resort experience is designed to nurture both.
             Guests enjoy private and adjoining suites thoughtfully appointed with recliners, where comfort meets convenience.
           </p>
-
-          <ul className="mt-10 grid gap-x-10 gap-y-4 text-sm text-v2-ink sm:grid-cols-2">
-            {FEATURES.map((feature) => (
-              <li
-                key={feature}
-                className="flex gap-3 border-b border-v2-ink/12 pb-3"
-              >
-                <span className="text-v2-ember">—</span>
-                {feature}
-              </li>
-            ))}
+          <ul className="mt-10 grid sm:grid-cols-2 gap-x-10 gap-y-4 text-sm text-[color:var(--ink)]">
+            <li className="flex gap-3 border-b border-[color:var(--line)] pb-3">
+              <span className="text-[color:var(--ember)]">—</span> Amenity-rich private rooms
+            </li>
+            <li className="flex gap-3 border-b border-[color:var(--line)] pb-3">
+              <span className="text-[color:var(--ember)]">—</span> Adjoining suites available
+            </li>
+            <li className="flex gap-3 border-b border-[color:var(--line)] pb-3">
+              <span className="text-[color:var(--ember)]">—</span> Recliners &amp; hotel linens
+            </li>
+            <li className="flex gap-3 border-b border-[color:var(--line)] pb-3">
+              <span className="text-[color:var(--ember)]">—</span> Made-to-order room service
+            </li>
           </ul>
-        </Reveal>
+        </div>
       </div>
     </section>
   );
