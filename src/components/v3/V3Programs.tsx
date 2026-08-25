@@ -69,7 +69,10 @@ const SPECS = [
 ];
 
 export function V3Programs() {
-  const [activeIdx, setActiveIdx] = useState(0);
+  const [committed, setCommitted] = useState(0);
+  const [preview, setPreview] = useState<number | null>(null);
+
+  const activeIdx = preview !== null ? preview : committed;
 
   return (
     <section className="section" id="care" data-chapter="2">
@@ -102,7 +105,14 @@ export function V3Programs() {
         </div>
 
         <div className="split split--care">
-          <div className="proglist" id="proglist" role="tablist" aria-label="Specialty programs" aria-orientation="vertical">
+          <div
+            className="proglist"
+            id="proglist"
+            role="tablist"
+            aria-label="Specialty programs"
+            aria-orientation="vertical"
+            onMouseLeave={() => setPreview(null)}
+          >
             {PROGRAMS.map((prog, i) => (
               <button
                 key={prog.num}
@@ -110,15 +120,33 @@ export function V3Programs() {
                 id={`pt-${i}`}
                 aria-controls={`pp-${i}`}
                 aria-selected={activeIdx === i}
-                tabIndex={activeIdx === i ? 0 : -1}
-                onClick={() => setActiveIdx(i)}
+                tabIndex={committed === i ? 0 : -1}
+                onClick={() => {
+                  setCommitted(i);
+                  setPreview(null);
+                }}
+                onMouseEnter={() => setPreview(i)}
+                onFocus={() => setPreview(i)}
+                onBlur={() => setPreview(null)}
                 onKeyDown={(e) => {
-                  if (e.key === "ArrowDown") {
+                  if (e.key === "ArrowDown" || e.key === "ArrowRight") {
                     e.preventDefault();
-                    setActiveIdx((prev) => (prev + 1) % PROGRAMS.length);
-                  } else if (e.key === "ArrowUp") {
+                    const next = (committed + 1) % PROGRAMS.length;
+                    setCommitted(next);
+                    setPreview(null);
+                  } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
                     e.preventDefault();
-                    setActiveIdx((prev) => (prev - 1 + PROGRAMS.length) % PROGRAMS.length);
+                    const next = (committed - 1 + PROGRAMS.length) % PROGRAMS.length;
+                    setCommitted(next);
+                    setPreview(null);
+                  } else if (e.key === "Home") {
+                    e.preventDefault();
+                    setCommitted(0);
+                    setPreview(null);
+                  } else if (e.key === "End") {
+                    e.preventDefault();
+                    setCommitted(PROGRAMS.length - 1);
+                    setPreview(null);
                   }
                 }}
               >

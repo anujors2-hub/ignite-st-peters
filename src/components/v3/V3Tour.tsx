@@ -140,6 +140,21 @@ export function V3Tour() {
                   aria-selected={activeIdx === i}
                   tabIndex={activeIdx === i ? 0 : -1}
                   onClick={() => setActiveIdx(i)}
+                  onKeyDown={(e) => {
+                    if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+                      e.preventDefault();
+                      setActiveIdx((prevIdx) => (prevIdx + 1) % ROOMS.length);
+                    } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+                      e.preventDefault();
+                      setActiveIdx((prevIdx) => (prevIdx - 1 + ROOMS.length) % ROOMS.length);
+                    } else if (e.key === "Home") {
+                      e.preventDefault();
+                      setActiveIdx(0);
+                    } else if (e.key === "End") {
+                      e.preventDefault();
+                      setActiveIdx(ROOMS.length - 1);
+                    }
+                  }}
                 >
                   {room.tabLabel}
                   <i aria-hidden="true"></i>
